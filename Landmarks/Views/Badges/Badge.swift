@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct Badge: View {
+    static let rotationCount = 8
     
     var badgeSymbols: some View {
-        RotatedBadgeSymbol(angle: Angle(degrees: 0))
-            .opacity(0.5)
+        ForEach(0..<Badge.rotationCount) { i in
+            RotatedBadgeSymbol(
+                angle: .degrees(Double(i) / Double(Badge.rotationCount)) * 360.0
+            )
+        }
+        .opacity(0.5)
     }
     
     var body: some View {
