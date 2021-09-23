@@ -15,11 +15,8 @@ struct CategoryHome: View {
     var body: some View {
         NavigationView {
             List {
-                modelData.features[0].image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
+                PageView(pages: modelData.features.map { FeatureCard(landmark: $0) })
+                    .aspectRatio(3 / 2, contentMode: .fit)
                     .listRowInsets(EdgeInsets())
                 
                 
@@ -37,7 +34,7 @@ struct CategoryHome: View {
                     Image(systemName: "person.crop.circle")
                         .accessibilityLabel("User Profile")
                 }
-
+                
             }
             .sheet(isPresented: $showingProfile) {
                 ProfileHost()
